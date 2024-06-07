@@ -2,8 +2,6 @@
 
 
 class Const:
-    LEFT_BUTTON = "Left button"
-    RIGHT_BUTTON = "Right button"
     BOT = "bot"
     BOT_CREATED_AT_LOWER = "bot_created_at"
     TELEGRAM_UID = "telegram_uid"

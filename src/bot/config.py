@@ -1,9 +1,13 @@
 import logging
 
 from datetime import datetime
-from config_reader import get_config_reader
 
+from config_reader import get_config_reader
 from const import Const
+from commands.cmd_start import router as start_router
+from commands.cmd_with_numbers import router as numeric_commands_router
+from commands.cmd_extra import router as extra_commands_router
+from commands.unprocessable_updates import router as unprocessed_commands_router
 
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
@@ -12,7 +16,7 @@ from aiogram.utils.callback_answer import CallbackAnswerMiddleware
 
 
 def init_bot_config() -> (Bot, Dispatcher):
-    """Init tg bot and dispancher instances."""
+    """Init tg bot and dispatcher instances."""
     logging.basicConfig(level=logging.INFO)
     bot = Bot(
         token=get_config_reader().bot_token.get_secret_value(),
@@ -26,6 +30,12 @@ def init_bot_config() -> (Bot, Dispatcher):
     #     pre=True, text="Ready!", show_alert=False
     # ))
     dp.callback_query.middleware(CallbackAnswerMiddleware())
+    dp.include_routers(
+        start_router,
+        numeric_commands_router,
+        extra_commands_router,
+        unprocessed_commands_router,
+    )
     dp[Const.BOT_CREATED_AT_LOWER] = datetime.now().strftime("%Y-%m-%d %H:%M")
     dp[Const.TELEGRAM_UID] = get_config_reader().tg_user_id
 
