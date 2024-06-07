@@ -1,5 +1,5 @@
 from functools import partial
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any
 
 from aiogram.types import (
     ReplyKeyboardMarkup,
@@ -7,7 +7,6 @@ from aiogram.types import (
     KeyboardButton,
     InlineKeyboardButton,
 )
-from aiogram.filters.callback_data import CallbackData
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
 from const import Const

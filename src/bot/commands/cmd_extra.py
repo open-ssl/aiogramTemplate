@@ -2,11 +2,10 @@ from aiogram import F, Router, html, types, Bot, flags
 from aiogram.enums import ParseMode
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.filters.command import Command, CommandObject
-from aiogram.filters.callback_data import CallbackData
 from aiogram.utils.callback_answer import CallbackAnswer
 from contextlib import suppress
 from magic_filter import F as MagicFilter
-from typing import AnyStr, Optional
+from typing import AnyStr
 
 from bot_commands import BotCommands
 from callbacks import NumbersCallbackFactory
