@@ -2,14 +2,18 @@ from aiogram import F, Router, html, types, Bot, flags
 from aiogram.enums import ParseMode
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.filters.command import Command, CommandObject
+from aiogram.filters.chat_member_updated import \
+    ChatMemberUpdatedFilter, JOIN_TRANSITION, KICKED, MEMBER
 from aiogram.utils.callback_answer import CallbackAnswer
 from contextlib import suppress
 from magic_filter import F as MagicFilter
-from typing import AnyStr
+from typing import AnyStr, List
+from pprint import pprint
 
 from bot_commands import BotCommands
 from callbacks import NumbersCallbackFactory
 from const import Const, CallbackConst
+from filters.find_usernames import HasUsernamesFilter
 from keyboards.main import KeyboardGenerator, get_switch_keyboard, get_keyboard_fab
 from random import randint
 
@@ -294,5 +298,55 @@ async def callbacks_num_finish_fab(callback: types.CallbackQuery):
     await callback.message.edit_text(f"{Const.TOTAL}: {user_value}")
     await callback.answer()
 
+
+####################################################################################
+
+
+@router.message(
+    F.text,
+    HasUsernamesFilter()
+)
+async def message_with_usernames(
+        message: types.Message,
+        usernames: List[str]
+):
+    await message.reply(
+        f'Thank you! I\'ll subscribe to the  '
+        f'{", ".join(usernames)}'
+    )
+
+
+@router.message(F.photo)
+async def photo_msg(message: types.Message):
+    await message.answer("It's an image")
+
+
+# Example: Process Left/Kicked group user
+####################################################################################
+
+some_users_in_memory = set()
+
+
+@router.my_chat_member(
+    ChatMemberUpdatedFilter(member_status_changed=KICKED)
+)
+async def user_blocked_bot(event: types.ChatMemberUpdated):
+    some_users_in_memory.discard(event.from_user.id)
+
+
+@router.my_chat_member(
+    ChatMemberUpdatedFilter(member_status_changed=MEMBER)
+)
+async def user_unblocked_bot(event: types.ChatMemberUpdated):
+    some_users_in_memory.add(event.from_user.id)
+
+
+@router.my_chat_member(
+    ChatMemberUpdatedFilter(
+        member_status_changed=JOIN_TRANSITION
+    )
+)
+async def user_chat_member_bot(event: types.ChatMemberUpdated):
+    pprint(f"User with ID: {event.from_user.id} is member of chat")
 
 ####################################################################################

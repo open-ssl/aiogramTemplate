@@ -17,3 +17,6 @@ class BotCommands:
     NUM_PREFIX = "num_"
 
     NUMBERS_FAB = "numbers_fab"
+
+    DICE = "dice"
+    BASKETBALL = "basketball"

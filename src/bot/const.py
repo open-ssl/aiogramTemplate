@@ -21,6 +21,9 @@ class Const:
     TOTAL = "Total"
     CHANGE = "change"
 
+    GROUP = "group"
+    SUPER_GROUP = "supergroup"
+
 
 class CallbackConst:
     RANDOM_VALUE = "random_value"
