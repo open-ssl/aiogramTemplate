@@ -1,19 +1,16 @@
 from aiogram import Router, F
 from aiogram.enums.dice_emoji import DiceEmoji
 from aiogram.types import Message
-from aiogram.types import chat
 from aiogram.filters import Command
 
 from bot_commands import BotCommands
 from const import Const
-# from filters.chat_type import ChatTypeFilter
 
 
 def __init__():
     r = Router()
     # r.message.filter(ChatTypeFilter(chat_type=[Const.GROUP, Const.SUPER_GROUP]))
     r.message.filter(F.chat.type.in_({Const.GROUP, Const.SUPER_GROUP}))
-    # r.message.filter(F.chat.type.in_({F.photo | F.text | F.sticker}))
     return r
 
 

@@ -54,10 +54,10 @@ class KeyboardGenerator:
 
     @classmethod
     def generate_one_row_reply_markup_keyboard(
-            cls,
-            buttons: list[str],
-            input_field_placeholder_text="",
-            with_resize_keyboard=True,
+        cls,
+        buttons: list[str],
+        input_field_placeholder_text="",
+        with_resize_keyboard=True,
     ) -> ReplyKeyboardMarkup:
         return cls._generate_one_row_reply_markup_keyboard(
             buttons, input_field_placeholder_text, with_resize_keyboard
@@ -129,19 +129,19 @@ class KeyboardGenerator:
 
     @staticmethod
     def _generate_one_row_reply_markup_keyboard(
-            buttons: List, input_field_placeholder_text: str, with_resize_keyboard: bool
+        buttons: List, input_field_placeholder_text: str, with_resize_keyboard: bool
     ) -> ReplyKeyboardMarkup:
         """Implementation of generating ReplyMarkupKeyboard with one row."""
         row = [KeyboardButton(text=button_text) for button_text in buttons]
-        reply_keyboard = partial(ReplyKeyboardMarkup, keyboard=[row], resize_keyboard=with_resize_keyboard)
+        reply_keyboard = partial(
+            ReplyKeyboardMarkup, keyboard=[row], resize_keyboard=with_resize_keyboard
+        )
         if input_field_placeholder_text:
             reply_keyboard.keywords["input_field_placeholder"] = (
                 input_field_placeholder_text
             )
 
         return reply_keyboard()
-
-
 
     @staticmethod
     def _generate_inline_markup_keyboard(

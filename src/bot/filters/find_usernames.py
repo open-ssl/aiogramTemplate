@@ -9,7 +9,8 @@ class HasUsernamesFilter(BaseFilter):
         entities = message.entities or list()
 
         found_usernames = [
-            item.extract_from(message.text) for item in entities
+            item.extract_from(message.text)
+            for item in entities
             if item.type == "mention"
         ]
 

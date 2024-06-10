@@ -10,7 +10,7 @@ from commands import (
     cmd_extra,
     cmd_group_games,
     cmd_fsm_food,
-    unknown_command
+    unknown_command,
 )
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
@@ -44,7 +44,7 @@ def init_bot_config() -> (Bot, Dispatcher):
         cmd_extra.router,
         cmd_group_games.router,
         cmd_fsm_food.router,
-        unknown_command.router
+        unknown_command.router,
     )
     dp[Const.BOT_CREATED_AT_LOWER] = datetime.now().strftime("%Y-%m-%d %H:%M")
     dp[Const.TELEGRAM_UID] = get_config_reader().tg_user_id

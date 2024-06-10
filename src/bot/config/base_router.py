@@ -26,7 +26,4 @@ class BaseRouter(Router):
         if not reply_markup:
             reply_markup = ReplyKeyboardRemove()
 
-        return self.message_instance.answer(
-            text=text,
-            reply_markup=reply_markup
-        )
+        return self.message_instance.answer(text=text, reply_markup=reply_markup)
