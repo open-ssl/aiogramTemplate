@@ -1,7 +1,7 @@
 import asyncio
 import logging
 
-from config import init_bot_config
+from config.config import init_bot_config
 from keyboards.main import KeyboardButtonConst
 
 from aiogram import F, types
@@ -9,7 +9,6 @@ from aiogram import F, types
 main_bot, dp = init_bot_config()
 
 
-# handler for some text
 @dp.message(F.text.lower() == KeyboardButtonConst.LEFT_BUTTON.lower())
 async def left_button_handler(message: types.Message):
     await message.reply(
@@ -18,7 +17,6 @@ async def left_button_handler(message: types.Message):
     )
 
 
-# handler for some text
 @dp.message(F.text.lower() == KeyboardButtonConst.RIGHT_BUTTON.lower())
 async def right_button_handler(message: types.Message):
     await message.reply(

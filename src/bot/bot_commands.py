@@ -20,3 +20,5 @@ class BotCommands:
 
     DICE = "dice"
     BASKETBALL = "basketball"
+
+    FOOD = "food"
