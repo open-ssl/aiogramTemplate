@@ -18,7 +18,12 @@ from bot_commands import BotCommands
 from callbacks import NumbersCallbackFactory
 from const import Const, CallbackConst
 from filters.find_usernames import HasUsernamesFilter
-from keyboards.main import KeyboardGenerator, get_switch_keyboard, get_keyboard_fab
+from keyboards.main import (
+    KeyboardGenerator,
+    KeyboardButtonConst,
+    get_switch_keyboard,
+    get_keyboard_fab,
+)
 from random import randint
 
 
@@ -338,3 +343,19 @@ async def user_chat_member_bot(event: types.ChatMemberUpdated):
 
 
 ####################################################################################
+
+
+@router.message(F.text.lower() == KeyboardButtonConst.LEFT_BUTTON.lower())
+async def left_button_handler(message: types.Message):
+    await message.reply(
+        f"You choice {KeyboardButtonConst.LEFT_BUTTON}. It's okay",
+        reply_markup=types.ReplyKeyboardRemove(),
+    )
+
+
+@router.message(F.text.lower() == KeyboardButtonConst.RIGHT_BUTTON.lower())
+async def right_button_handler(message: types.Message):
+    await message.reply(
+        f"You choice {KeyboardButtonConst.RIGHT_BUTTON}. It's normal",
+        reply_markup=types.ReplyKeyboardRemove(),
+    )

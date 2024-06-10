@@ -24,8 +24,9 @@ from middlewares.base import SomeOuterMiddleware
 def init_bot_config() -> (Bot, Dispatcher):
     """Init tg bot and dispatcher instances."""
     logging.basicConfig(level=logging.INFO)
+    bot_config = get_config_reader()
     bot = Bot(
-        token=get_config_reader().bot_token.get_secret_value(),
+        token=bot_config.bot_token.get_secret_value(),
         default=DefaultBotProperties(parse_mode=ParseMode.HTML),
     )
     dp = Dispatcher(storage=MemoryStorage(), fsm_strategy=FSMStrategy.USER_IN_CHAT)
@@ -47,6 +48,6 @@ def init_bot_config() -> (Bot, Dispatcher):
         unknown_command.router,
     )
     dp[Const.BOT_CREATED_AT_LOWER] = datetime.now().strftime("%Y-%m-%d %H:%M")
-    dp[Const.TELEGRAM_UID] = get_config_reader().tg_user_id
+    dp[Const.TELEGRAM_UID] = bot_config.tg_user_id
 
     return bot, dp

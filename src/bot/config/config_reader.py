@@ -5,7 +5,7 @@ CONFIG_FILE_NAME = ".env"
 CONFIG_FILE_ENCODING = "utf-8"
 
 
-class Settings(BaseSettings):
+class BotConfig(BaseSettings):
     bot_token: SecretStr
     tg_user_id: int
     model_config = SettingsConfigDict(
@@ -13,8 +13,5 @@ class Settings(BaseSettings):
     )
 
 
-CONFIG_READER = Settings()
-
-
-def get_config_reader() -> Settings:
-    return CONFIG_READER
+def get_config_reader() -> BotConfig:
+    return BotConfig()
