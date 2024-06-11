@@ -10,8 +10,9 @@ from aiogram.filters.chat_member_updated import (
 )
 from aiogram.utils.callback_answer import CallbackAnswer
 from contextlib import suppress
+from fluent.runtime import FluentLocalization
 from magic_filter import F as MagicFilter
-from typing import AnyStr, List
+from typing import AnyStr, List, Dict
 from pprint import pprint
 
 from bot_commands import BotCommands
@@ -359,3 +360,26 @@ async def right_button_handler(message: types.Message):
         f"You choice {KeyboardButtonConst.RIGHT_BUTTON}. It's normal",
         reply_markup=types.ReplyKeyboardRemove(),
     )
+
+
+# Example: Set localization for command
+####################################################################################
+
+
+@router.message(Command(BotCommands.LOCALE))
+async def cmd_locale(
+    message: types.Message,
+    locales: Dict[str, FluentLocalization],
+):
+    print(locales)
+    await message.answer(
+        locales.get("ru").format_value("cmd-start"),
+        parse_mode=None,
+    )
+    await message.answer(
+        locales.get("en").format_value("cmd-start"),
+        parse_mode=None,
+    )
+
+
+####################################################################################

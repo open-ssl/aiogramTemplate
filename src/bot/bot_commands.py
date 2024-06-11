@@ -22,3 +22,4 @@ class BotCommands:
     BASKETBALL = "basketball"
 
     FOOD = "food"
+    LOCALE = "locale"

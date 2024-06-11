@@ -181,6 +181,20 @@ tests-mypy = ["mypy (>=1.6)", "pytest-mypy-plugins"]
 tests-no-zope = ["attrs[tests-mypy]", "cloudpickle", "hypothesis", "pympler", "pytest (>=4.3.0)", "pytest-xdist[psutil]"]
 
 [[package]]
+name = "babel"
+version = "2.15.0"
+description = "Internationalization utilities"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "Babel-2.15.0-py3-none-any.whl", hash = "sha256:08706bdad8d0a3413266ab61bd6c34d0c28d6e1e7badf40a2cebe67644e2e1fb"},
+    {file = "babel-2.15.0.tar.gz", hash = "sha256:8daf0e265d05768bc6c7a314cf1321e9a123afc328cc635c18622a2f30a04413"},
+]
+
+[package.extras]
+dev = ["freezegun (>=1.0,<2.0)", "pytest (>=6.0)", "pytest-cov"]
+
+[[package]]
 name = "black"
 version = "24.4.2"
 description = "The uncompromising code formatter."
@@ -259,6 +273,38 @@ files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
 ]
+
+[[package]]
+name = "fluent-runtime"
+version = "0.4.0"
+description = "Localization library for expressive translations."
+optional = false
+python-versions = "*"
+files = [
+    {file = "fluent.runtime-0.4.0-py2.py3-none-any.whl", hash = "sha256:51fd02582c2363e1106d7051642967a1b7f406dd9c317bd4600a73ede40c5146"},
+    {file = "fluent.runtime-0.4.0.tar.gz", hash = "sha256:cb5ef96a58a3f67acaaca046d1201d202a1ebf2823e5e664370f359bae20574d"},
+]
+
+[package.dependencies]
+attrs = "*"
+babel = "*"
+"fluent.syntax" = ">=0.17,<0.20"
+pytz = "*"
+typing-extensions = ">=3.7,<5"
+
+[[package]]
+name = "fluent-syntax"
+version = "0.19.0"
+description = "Localization library for expressive translations."
+optional = false
+python-versions = "*"
+files = [
+    {file = "fluent.syntax-0.19.0-py2.py3-none-any.whl", hash = "sha256:b352b3475fac6c6ed5f06527921f432aac073d764445508ee5218aeccc7cc5c4"},
+    {file = "fluent.syntax-0.19.0.tar.gz", hash = "sha256:920326d7f46864b9758f0044e9968e3112198bc826acee16ddd8f11d359004fd"},
+]
+
+[package.dependencies]
+typing-extensions = ">=3.7,<5"
 
 [[package]]
 name = "frozenlist"
@@ -663,6 +709,17 @@ files = [
 cli = ["click (>=5.0)"]
 
 [[package]]
+name = "pytz"
+version = "2024.1"
+description = "World timezone definitions, modern and historical"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pytz-2024.1-py2.py3-none-any.whl", hash = "sha256:328171f4e3623139da4983451950b28e95ac706e13f3f2630a879749e7a8b319"},
+    {file = "pytz-2024.1.tar.gz", hash = "sha256:2a29735ea9c18baf14b448846bde5a48030ed267578472d8955cd0e7443a9812"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.12.1"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -779,4 +836,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "90de829b34555e236a426192b8060e745d838c6a04350a159efa44c93bdf397c"
+content-hash = "248d365b03d4e749b68133bff53cbee48ce33d8310d851a9e0571f919c2595ed"
