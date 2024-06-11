@@ -373,11 +373,11 @@ async def cmd_locale(
 ):
     print(locales)
     await message.answer(
-        locales.get("ru").format_value("cmd-start"),
+        locales.get("ru").format_value("cmd-locale"),
         parse_mode=None,
     )
     await message.answer(
-        locales.get("en").format_value("cmd-start"),
+        locales.get("en").format_value("cmd-locale"),
         parse_mode=None,
     )
 
